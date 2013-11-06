@@ -108,6 +108,7 @@ class TranslatableLanguageSelector(LanguageSelector):
         return formvariables
 
     def languages(self):
+       
         context = aq_inner(self.context)
         results = LanguageSelector.languages(self)
         supported_langs = [v['code'] for v in results]
@@ -150,7 +151,8 @@ class TranslatableLanguageSelector(LanguageSelector):
                 if direct:
                     data['url'] = state.canonical_object_url() + appendtourl
                 else:
-                    data['url'] = state.canonical_object_url() + set_language
+                    ################# remove set_language from the original ##########################################
+                    data['url'] = state.canonical_object_url()
             else:
                 has_view_permission = bool(_checkPermission('View', context))
                 # Ideally, we should also check the View permission of default
