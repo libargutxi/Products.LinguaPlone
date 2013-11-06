@@ -12,7 +12,10 @@ class MultilingualContentViewlet(ViewletBase):
         current = context.Language()
         context_state = getMultiAdapter(
             (context, self.request), name=u'plone_context_state')
-        context = context_state.canonical_object()
+        current_page_url = context_state.current_page_url()
+
+        if context.absolute_url() != current_page_url:
+            context = context_state.canonical_object()
         _checkPermission = getSecurityManager().checkPermission
         self.translations = []
         for lang, content in context.getTranslations(review_state=False).items():

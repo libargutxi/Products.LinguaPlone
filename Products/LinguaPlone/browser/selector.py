@@ -15,7 +15,7 @@ class TranslatableLanguageSelector(LanguageSelector):
     """Language selector for translatable content.
     """
 
-    set_language = True
+    set_language = False
 
     def available(self):
         if self.tool is not None:
